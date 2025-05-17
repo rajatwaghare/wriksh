@@ -4,7 +4,8 @@ import { RxInstagramLogo } from "react-icons/rx";
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
+    <div className="  h-[99vh]  flex flex-col items-center justify-items-center justify-center">
+      <div className=" relative h-[90vh] flex flex-col items-center  justify-center">
       <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
         <Image
           src="/logo.svg"
@@ -12,12 +13,14 @@ export default function Home() {
           width={100}
           height={38}
           priority
+          className="m-auto"
         />
+        <p className=" font-[400] opacity-30">Blueprint for Generalists.</p>
       </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
+      <footer className=" absolute bottom-10 left-0 right-0 row-start-3 flex gap-6 flex-wrap items-center justify-center">
         <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://www.instagram.com/wriksh.exp/"
+          className="flex  items-center gap-2 hover:underline hover:underline-offset-4"
+          href="https://www.instagram.com/wriksh.act/"
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -25,6 +28,7 @@ export default function Home() {
           Instagram
         </a>
       </footer>
+      </div>
     </div>
   );
 }
