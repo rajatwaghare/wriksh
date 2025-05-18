@@ -11,7 +11,7 @@ const fraunces = Fraunces({
 
 
 export const metadata = {
-  title: "W R I S H",
+  title: "Wriksh - Anchor of Clarity",
 };
 
 export default function RootLayout({ children }) {
