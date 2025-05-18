@@ -15,7 +15,7 @@ export default function Home() {
           priority
           className="m-auto"
         />
-        <p className=" font-[400] opacity-30">Blueprint for Generalists.</p>
+        <p className=" font-[400] opacity-30">Anchor of Clarity.</p>
       </main>
       <footer className=" absolute bottom-10 left-0 right-0 row-start-3 flex gap-6 flex-wrap items-center justify-center">
         <a
