@@ -8,8 +8,8 @@ function Header() {
             <div className=' border-b fixed top-0 w-full z-10 bg-white  right-0 left-0'>
                 <div className='container flex justify-between m-auto  mx-auto p-4'>
                     <div className='text-xs md:text-base flex gap-3 md:gap-6'>
-                        <Link href='/'>Projects</Link>
-                        <Link href='/'>Articles</Link>
+                        <Link href='/projects'>Projects</Link>
+                        <Link href='/articles'>Articles</Link>
                     </div>
                     <div className=''>
                         <Link href='/'>
