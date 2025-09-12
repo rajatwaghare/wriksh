@@ -13,13 +13,17 @@ export function AuthProvider({ children }) {
 
   useEffect(() => {
     // Check if user is authenticated on mount
-    const checkAuth = () => {
-      const authStatus = localStorage.getItem('admin_authenticated')
-      const username = localStorage.getItem('admin_user')
-      
-      if (authStatus === 'true' && username) {
-        setIsAuthenticated(true)
-        setUser(username)
+    const checkAuth = async () => {
+      try {
+        const response = await fetch('/api/auth/verify')
+        const data = await response.json()
+        
+        if (data.authenticated) {
+          setIsAuthenticated(true)
+          setUser(data.user)
+        }
+      } catch (error) {
+        console.error('Auth check failed:', error)
       }
       setIsLoading(false)
     }
@@ -27,21 +31,38 @@ export function AuthProvider({ children }) {
     checkAuth()
   }, [])
 
-  const login = (username) => {
-    localStorage.setItem('admin_authenticated', 'true')
-    localStorage.setItem('admin_user', username)
-    setIsAuthenticated(true)
-    setUser(username)
+  const login = async (username, password) => {
+    try {
+      const response = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username, password }),
+      })
+      
+      const data = await response.json()
+      
+      if (data.success) {
+        setIsAuthenticated(true)
+        setUser(data.user)
+        return true
+      } else {
+        return false
+      }
+    } catch (error) {
+      console.error('Login failed:', error)
+      return false
+    }
   }
 
-  const checkPassword = (password) => {
-    const storedPassword = localStorage.getItem('admin_password')
-    return password === (storedPassword || 'briefbase@1996')
-  }
-
-  const logout = () => {
-    localStorage.removeItem('admin_authenticated')
-    localStorage.removeItem('admin_user')
+  const logout = async () => {
+    try {
+      await fetch('/api/auth/logout', { method: 'POST' })
+    } catch (error) {
+      console.error('Logout failed:', error)
+    }
+    
     setIsAuthenticated(false)
     setUser(null)
     router.push('/admin/login')
@@ -52,8 +73,7 @@ export function AuthProvider({ children }) {
     user,
     isLoading,
     login,
-    logout,
-    checkPassword
+    logout
   }
 
   return (

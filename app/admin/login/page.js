@@ -12,18 +12,16 @@ export default function LoginPage() {
   const [error, setError] = useState('')
   const [isLoading, setIsLoading] = useState(false)
   const router = useRouter()
-  const { login, checkPassword } = useAuth()
+  const { login } = useAuth()
 
   const handleSubmit = async (e) => {
     e.preventDefault()
     setIsLoading(true)
     setError('')
 
-    // Simulate API call delay
-    await new Promise(resolve => setTimeout(resolve, 1000))
-
-    if (credentials.username === 'rajatdwaghare' && checkPassword(credentials.password)) {
-      login(credentials.username)
+    const success = await login(credentials.username, credentials.password)
+    
+    if (success) {
       router.push('/admin')
     } else {
       setError('Invalid username or password')
