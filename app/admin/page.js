@@ -5,6 +5,11 @@ import Link from 'next/link'
 import articlesData from '../../data/articles.json'
 import ProtectedRoute from './protected-route'
 import { useAuth } from './auth-context'
+import { FiEdit } from "react-icons/fi";
+import { AiOutlineDelete } from "react-icons/ai";
+
+
+
 
 function AdminPageContent() {
   const [articles, setArticles] = useState([])
@@ -36,7 +41,7 @@ function AdminPageContent() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 pb-20">
       {/* Header */}
       <div className="bg-white border-b">
         <div className="max-w-7xl mx-auto px-4 py-6">
@@ -159,13 +164,13 @@ function ArticleList({ articles, onEdit, onDelete }) {
                         onClick={() => onEdit(article)}
                         className="text-slate-600 hover:text-slate-900"
                       >
-                        Edit
+                        <FiEdit />
                       </button>
                       <button
                         onClick={() => onDelete(article.id)}
                         className="text-red-600 hover:text-red-900"
                       >
-                        Delete
+                        <AiOutlineDelete />
                       </button>
                     </div>
                   </td>
